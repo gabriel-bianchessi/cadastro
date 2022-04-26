@@ -8,6 +8,8 @@ async function main() {
   const nome = await rl.question("Qual o seu nome? ")
   const dataNasc = await rl.question("Qual sua data de nascimento? AAAA-DD-MM")
 
+  // TODO Escrever as implementações das novas classes 
+
   const person = new Pessoa(nome, dataNasc)
   person.store()
   process.exit()
