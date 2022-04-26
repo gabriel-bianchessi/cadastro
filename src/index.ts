@@ -1,25 +1,16 @@
 //@ts-ignore
 import * as readline from 'node:readline/promises'
-import * as fs from 'node:fs'
 import { stdin as input, stdout as output } from 'node:process'
-
+import { Pessoa } from './Entities/Pessoa'
 const rl = readline.createInterface({input, output})
 
-type GenericObject = {[key: string]: any}
-class Entity {
-  private _dados: GenericObject = {}
+async function main() {
+  const nome = await rl.question("Qual o seu nome? ")
+  const dataNasc = await rl.question("Qual sua data de nascimento? AAAA-DD-MM")
 
-  constructor() {}
-
-  load() {}
-  
-  store() {
-    // TODO mudar para assíncrono
-    fs.writeFileSync("teste.txt", "Olá bicho")
-  }
-
-  delete() {}
+  const person = new Pessoa(nome, dataNasc)
+  person.store()
+  process.exit()
 }
 
-const entity = new Entity()
-entity.store()
+main()

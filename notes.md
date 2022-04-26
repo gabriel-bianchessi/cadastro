@@ -43,4 +43,18 @@ Para cadastrar uma pessoa, precisamos saguir o CRUD:
 * Delete
 
 Os métodos dentro da Classe __Entity__ são feitos obedecendo o CRUD
+Usaremos o Fyle System do node para poder acessar arquivos 
 
+### This 
+O this é uma forma de referenciar um objeto que será criado a partir da classe.
+O objeto ainda não existe, mas irá existir
+
+### Classe Abstrata
+Uma classe abstrata não serve para ser instanciada, serve para ser herdada
+Dessa forma impedimos que o software tenha classes muito genéricas
+Ela cria algumas coisas necessárias, deixa alguns métodos prontos, mas não faz tudo 
+
+### Extend e herança
+Quando fazemos uma herança, a classe filha não tem todos os atributos da classe pai.
+Na verdade, os dois objetos são colocadas em memória e são vinculados.
+Para pegar as informações do método pai é necessário chamar o método ```super()```
