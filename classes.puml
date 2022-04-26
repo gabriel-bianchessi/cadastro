@@ -1,0 +1,13 @@
+@startuml
+abstract class Entity {
+  # object _dados
+  void constructor()
+  void load()
+  void store()
+  void delete()
+}
+class Pessoa {
+
+}
+Entity --> Pessoa
+@enduml
