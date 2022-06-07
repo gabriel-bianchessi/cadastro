@@ -1,18 +1,37 @@
-//@ts-ignore
-import * as readline from 'node:readline/promises'
-import { stdin as input, stdout as output } from 'node:process'
-import { Pessoa } from './Entities/Pessoa'
-const rl = readline.createInterface({input, output})
 
-async function main() {
-  const nome = await rl.question("Qual o seu nome? ")
-  const dataNasc = await rl.question("Qual sua data de nascimento? AAAA-DD-MM")
+import express from "express"
+import cors from "cors"
+import { Aluno } from "./Entidades/Aluno"
 
-  // TODO Escrever as implementações das novas classes 
+const app = express()
+app.use(express.json())
+app.use(cors())
 
-  const person = new Pessoa(nome, dataNasc)
-  person.store()
-  process.exit()
-}
+app.get("/", (request, response) => {
+    response.send("Hello World")
+})
 
-main()
+app.get("/teste", (req, res) => {
+    res.send("OIE")
+})
+
+app.post("/aluno", (req, res) => {
+    if (req.body.nome.toLowerCase().trim() == "gabriel monteiro") {
+        res.statusCode = 451
+        res.json({ error: true, msg: "..." })
+        return
+    }
+
+    const aluno = new Aluno({
+        nome: req.body.nome,
+        dataNasc: new Date(req.body.dataNasc),
+        matricula: req.body.matricula
+    })
+    aluno.store()
+    res.statusCode = 200
+    res.json({ error: false })
+})
+
+app.listen(4000, () => {
+    console.log(`⚡ server is running`)
+})
